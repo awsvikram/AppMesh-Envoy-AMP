@@ -31,10 +31,10 @@ serverFiles:
   rules: {}
 
   prometheus.yml:
-*    global:
+    global:
       scrape_interval: 10s
       scrape_timeout: 5s
-      evaluation_interval: 10s*
+      evaluation_interval: 10s
   
     rule_files:
       - /etc/config/recording_rules.yml
@@ -58,12 +58,12 @@ serverFiles:
           target_label: __address__
         - action: labelmap
           regex: __meta_kubernetes_pod_label_(.+)
-*        **-** source_labels**:** **[**__meta_kubernetes_namespace**]*
-*          action**:** replace*
-*          target_label**:** **namespace*
-*        **-** source_labels**:** **[**app**]*
-*          action**:** replace*
-*          target_label**:** service**  *       
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: namespace
+        - source_labels: [‘app’]
+          action: replace
+          target_label: service      
         - source_labels: [__meta_kubernetes_pod_name]
           action: replace
           target_label: kubernetes_pod_name
