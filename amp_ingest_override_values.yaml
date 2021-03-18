@@ -61,7 +61,7 @@ serverFiles:
         - source_labels: [__meta_kubernetes_namespace]
           action: replace
           target_label: namespace
-        - source_labels: [‘app’]
+        - source_labels: ['app']
           action: replace
           target_label: service      
         - source_labels: [__meta_kubernetes_pod_name]
