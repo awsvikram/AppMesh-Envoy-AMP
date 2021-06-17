@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: ingress-bugbash
+  name: echo
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/group.name: echo2048
+    alb.ingress.kubernetes.io/group.order: '1'
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /echo
+            backend:
+              serviceName: echo
+              servicePort: 80
